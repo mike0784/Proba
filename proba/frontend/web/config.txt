@@ -1,0 +1,32 @@
+[aliases][@bower] => @vendor/bower-asset 
+;[aliases][@npm] => @vendor/npm-asset 
+;[components][cache] => Array 
+;[components][db][class] => yii\db\Connection 
+\;[components][db][dsn] => mysql:host=localhost;dbname=dbusers 
+\;[components][db][username] => root 
+\;[components][db][password] => root 
+\;[components][db][charset] => utf8 
+\;[components][mailer][class] => yii\swiftmailer\Mailer 
+\;[components][mailer][viewPath] => @common/mail 
+\;[components][mailer][useFileTransport] => 1 
+\;[components][request][csrfParam] => _csrf-frontend 
+\;[components][request][cookieValidationKey] => _abt-UJxkuXO76Pz-tuRDJHHKqQ3HodB 
+\;[components][user][identityClass] => common\models\User 
+\;[components][user][enableAutoLogin] => 1 
+\;[components][user][identityCookie] => Array 
+\;[components][session] => Array 
+;[components][log][traceLevel] => 3 
+\;[components][log][targets] => Array 
+\;[components][errorHandler] => Array 
+;[bootstrap][0] => log 
+;[bootstrap][1] => debug 
+;[bootstrap][2] => gii 
+;[params][adminEmail] => admin@example.com 
+;[params][supportEmail] => support@example.com 
+;[params][senderEmail] => noreply@example.com 
+;[params][senderName] => Example.com mailer 
+;[params][user.passwordResetTokenExpire] => 3600 
+;[params][user.passwordMinLength] => 8 
+;[modules][debug] => Array 
+;[modules][gii] => Array 
+;
