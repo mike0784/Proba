@@ -1,15 +1,16 @@
 <?php
 
-namespace app\models;
+//namespace app\models;
+namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\publication;
+use app\models\Token;
 
 /**
- * PublicationSearch represents the model behind the search form of `app\models\publication`.
+ * TokenSearch represents the model behind the search form of `app\models\Token`.
  */
-class PublicationSearch extends publication
+class TokenSearch extends Token
 {
     /**
      * {@inheritdoc}
@@ -17,8 +18,8 @@ class PublicationSearch extends publication
     public function rules()
     {
         return [
-            [['id', 'created_at'], 'integer'],
-            [['accesstoken', 'textpublication'], 'safe'],
+            [['id', 'iduser'], 'integer'],
+            [['accesstoken'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class PublicationSearch extends publication
      */
     public function search($params)
     {
-        $query = publication::find();
+        $query = Token::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +60,10 @@ class PublicationSearch extends publication
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
+            'iduser' => $this->iduser,
         ]);
 
-        $query->andFilterWhere(['like', 'accesstoken', $this->accesstoken])
-            ->andFilterWhere(['like', 'textpublication', $this->textpublication]);
+        $query->andFilterWhere(['like', 'accesstoken', $this->accesstoken]);
 
         return $dataProvider;
     }

@@ -11,8 +11,28 @@ use yii\base\Model;
  class FuckForm extends Model
  {
 	 public $pr1;
-	 public $list_pr = ['pr1', Null, null];
+	 public $list_pr = Null;
+	 public $list_sr = Null;
+	 public $search;
+	 public $sort;
 	 public $qr;
 	 public $pr2;
-	 public $resultQwery = [];
+	 public $resultQwery=Null;
+	 public $path;
+	 
+	 public function sedQwery()
+	 {
+		 /*$i = 0;
+		 foreach($resultQwery as $key => $value)
+		 {
+			 $i++;
+		 }*/
+		 if(!is_array($this->resultQwery)){
+			 if($ff == null)
+			{
+				$this->resultQwery = ['1' => 'Ничего не найдено!!!'];
+				$this->path = 'Прошло удачно!!! ';
+			}
+		 }
+	 }
  }

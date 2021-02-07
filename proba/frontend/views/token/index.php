@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PublicationSearch */
+/* @var $searchModel app\models\TokenSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Publications';
+$this->title = 'Tokens';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="publication-index">
+<div class="token-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Publication', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Token', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,9 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'iduser',
             'accesstoken',
-            'textpublication',
-            'created_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

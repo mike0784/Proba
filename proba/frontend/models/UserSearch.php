@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\publication;
+use app\models\User;
 
 /**
- * PublicationSearch represents the model behind the search form of `app\models\publication`.
+ * UserSearch represents the model behind the search form of `app\models\User`.
  */
-class PublicationSearch extends publication
+class UserSearch extends User
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class PublicationSearch extends publication
     public function rules()
     {
         return [
-            [['id', 'created_at'], 'integer'],
-            [['accesstoken', 'textpublication'], 'safe'],
+            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class PublicationSearch extends publication
      */
     public function search($params)
     {
-        $query = publication::find();
+        $query = User::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,17 @@ class PublicationSearch extends publication
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'status' => $this->status,
             'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'accesstoken', $this->accesstoken])
-            ->andFilterWhere(['like', 'textpublication', $this->textpublication]);
+        $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'verification_token', $this->verification_token]);
 
         return $dataProvider;
     }

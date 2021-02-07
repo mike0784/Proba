@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\publication;
-use app\models\PublicationSearch;
+use app\models\Token;
+use app\models\TokenSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PublicationController implements the CRUD actions for publication model.
+ * TokenController implements the CRUD actions for Token model.
  */
-class PublicationController extends Controller
+class TokenController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class PublicationController extends Controller
     }
 
     /**
-     * Lists all publication models.
+     * Lists all Token models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PublicationSearch();
+        $searchModel = new TokenSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PublicationController extends Controller
     }
 
     /**
-     * Displays a single publication model.
+     * Displays a single Token model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class PublicationController extends Controller
     }
 
     /**
-     * Creates a new publication model.
+     * Creates a new Token model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new publication();
+        $model = new Token();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class PublicationController extends Controller
     }
 
     /**
-     * Updates an existing publication model.
+     * Updates an existing Token model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class PublicationController extends Controller
     }
 
     /**
-     * Deletes an existing publication model.
+     * Deletes an existing Token model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class PublicationController extends Controller
     }
 
     /**
-     * Finds the publication model based on its primary key value.
+     * Finds the Token model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return publication the loaded model
+     * @return Token the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = publication::findOne($id)) !== null) {
+        if (($model = Token::findOne($id)) !== null) {
             return $model;
         }
 

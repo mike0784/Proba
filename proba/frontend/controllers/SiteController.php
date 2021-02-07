@@ -15,6 +15,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\FuckForm;
+use frontend\models\PublicForm;
 
 /**
  * Site controller
@@ -154,8 +155,49 @@ class SiteController extends Controller
     public function actionFuck()
     {
         $model = new FuckForm();
+		$model->sedQwery();
 		return $this->render('fuck', ['model' => $model,]);
     }
+	
+	public function actionPublic()
+	{
+		$model = new PublicForm;
+		$model->findAccessToken();
+		$model->sedQwery();
+		if($model->load(Yii::$app->request->post()) && $model->textSave())
+		{
+			Yii::$app->session->setFlash('success', 'Text save');
+		}
+		/*
+		$string = Yii::$app->request->post();
+		if(isset($string))
+		{
+			$f = fopen('SaveAction.txt', 'w');
+			if(is_array($string))
+			{
+				foreach($string as $key => $value)
+				{
+					if(is_array($value))
+					{
+						foreach($value as $key1 => $value1)
+						{
+							fwrite($f, "[".$key."][".$key1."]=".$value1."\n");
+						}
+					}
+					else{
+						fwrite($f, "[".$key."]=".$value."\n");
+					}
+				}
+			}
+			else{
+				fwrite($f, $string);
+			}
+			fwrite($f, "accessToken:".$model->accessToken);
+			fclose($f);
+		}*/
+		return $this->render('public', ['model' => $model,]);
+	}
+	
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -163,7 +205,6 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
             return $this->goHome();
         }
-
         return $this->render('signup', [
             'model' => $model,
         ]);

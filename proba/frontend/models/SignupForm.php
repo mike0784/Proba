@@ -4,6 +4,7 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use common\models\User;
+use frontend\models\Token;
 
 /**
  * Signup form
@@ -13,6 +14,8 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+	public $tt;
+	public $asd;
 
 
     /**
@@ -44,18 +47,25 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if (!$this->validate()) {
+		$tt;
+		if (!$this->validate()) {
             return null;
         }
-        
         $user = new User();
+		$tk = new Token();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        return $user->save() && $this->sendEmail($user);
-
+		$user->generateAccessToken();
+		$tk->accesstoken = $user->accessToken;
+		$tt = $user->save() && $this->sendEmail($user);
+        $this->asd = User::findOne(['username' => $user->username]);
+		$tk->iduser = $this->asd['id'];
+		$tk->save();
+		
+		return $tt;
     }
 
     /**

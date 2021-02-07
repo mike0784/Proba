@@ -1,6 +1,7 @@
 <?php
 
-namespace app\models;
+//namespace app\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -30,11 +31,8 @@ class Publication extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'namepublic', 'subject', 'created_at', 'updated_at', 'namefile'], 'required'],
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['namepublic', 'subject', 'namefile'], 'string', 'max' => 255],
-            [['namepublic'], 'unique'],
-            [['namefile'], 'unique'],
+            [['id', 'created_at'], 'integer'],
+            [['accesstoken', 'textpublication'], 'safe'],
         ];
     }
 
@@ -45,11 +43,9 @@ class Publication extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'namepublic' => 'Namepublic',
-            'subject' => 'Subject',
+            'accesstoken' => 'accessToken',
+            'textpublication' => 'TextPublication',
             'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'namefile' => 'Namefile',
         ];
     }
 }

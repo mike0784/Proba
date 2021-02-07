@@ -1,29 +1,24 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Данная страница для просмотра, удаления, редактирования и размещения публикаций*/
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Fuck you';
+$this->title = 'Publication';
 $this->params['breadcrumbs'][] = $this->title;
 $items1 = ['1' => 'названию', '2' => 'теме', '3' => 'автору'];
 $params1 = ['prompt' => 'Поиск публикации по...', 'options' => [ '4' => ['Selected' => true]]];
 $items2 = ['1' => 'названию', '2' => 'теме', '3' => 'автору', '4' => 'дате'];
 $params2 = ['prompt' => 'Сортировать по...'];
 $params3 = ['prompt' => 'Найдено'];
-$ff = ['1'=>'qwe', '2'=>'wfwe', '3'=>'21423vf'];
-//, 'options' => [ '1' => ['Selected' => true]]
+$ff;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>PUKI PAKI</p>
+	<?php $model->accessToken ?>
 	<div class="form-group">
-		<?php $form = ActiveForm::begin(['id' => 'fuck-form']); ?>
+		<?php $form = ActiveForm::begin(['id' => 'public-form']); ?>
+		<?= Html::label('AccessToken: '.$model->accessToken) ?> 
 		<div class="row">
 			<div class="col-lg-5">
 				<?= $form->field($model, 'search')->dropDownList($items2, $params1)?>
@@ -47,12 +42,13 @@ $ff = ['1'=>'qwe', '2'=>'wfwe', '3'=>'21423vf'];
             </div>
 		</div>
 		<div class="form-group">
-			<?= //print 'resultQwery:';
-			$form->field($model, 'resultQwery')->listBox($model->resultQwery);
-			//Html::listBox('list', Null, $model->resultQwery)?>
+			<?= $form->field($model, 'resultQwery')->listBox($model->resultQwery) ?>
+			<?= $form->field($model, 'text')->textInput() ?>
 		</div>
+		<div class="form-group">
+                <?= Html::submitButton('Save', ['class' => 'btn btn-primary', 'name' => 'save']) ?>
+        </div>
 	</div>
 	<?php ActiveForm::end(); ?>
     <code><?= __FILE__ ?></code>
 </div>
-
